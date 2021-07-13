@@ -3,7 +3,7 @@ import { Input } from "@moai/core";
 import { useState } from "react";
 
 const InputTesting = () => {
-	const [value, setValue] = useState("");
+	const [value, setValue] = useState<string>("");
 	return (
 		<div>
 			<Input value={value} setValue={setValue} aria-label="input" />
@@ -35,5 +35,26 @@ describe("Testing Input Component", () => {
 		fireEvent.click(buttonElement);
 		expect(screen.getByText("Goodbye")).toBeDefined();
 		expect(inputElement.value).toBe("Goodbye");
+	});
+
+	test("props.defaultValue should be displayed before Input's text change", async () => {
+		render(<Input defaultValue="Foo" aria-label="default-input" />);
+
+		const inputElement = screen.getByLabelText(
+			"default-input"
+		) as HTMLInputElement;
+
+		expect(inputElement.value).toBe("Foo");
+	});
+
+	test("props.defaultValue should be replace when Input's text change", async () => {
+		render(<Input defaultValue="Foo" aria-label="default-input" />);
+
+		const inputElement = screen.getByLabelText(
+			"default-input"
+		) as HTMLInputElement;
+
+		fireEvent.change(inputElement, { target: { value: "Hello" } });
+		expect(inputElement.value).not.toBe("Foo");
 	});
 });
