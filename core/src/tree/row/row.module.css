@@ -1,0 +1,28 @@
+.container {
+	display: flex;
+	align-items: center;
+	padding-left: 8px;
+	cursor: pointer;
+}
+
+/* Turn off transition on purpose to make the hover feels faster */
+.container:not(.x) {
+	transition: none;
+}
+/* Also turn off in the toggle button */
+.container:not(.x) .toggle button {
+	transition: none;
+}
+
+.tab,
+.toggle,
+.actions {
+	flex: 0 0 auto;
+}
+
+.label {
+	white-space: nowrap;
+	flex: 1 1 0px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

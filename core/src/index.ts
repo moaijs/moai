@@ -35,3 +35,4 @@ export * from "./text/text";
 export * from "./time-input/time-input";
 export * from "./toast/toast";
 export * from "./tooltip/tooltip";
+export * from "./tree/tree";
